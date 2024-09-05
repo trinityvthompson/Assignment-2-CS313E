@@ -9,8 +9,8 @@ import sys
 def merge_tuples (tuples_list):
     """Merge the tuples"""
 
-    # ADD YOUR CODE HERE ... AND REMOVE THIS Line
-    return None # Replace this 
+    sorted_tuples = sorted(tuples_list)
+    return sorted_tuples
 
 
 
@@ -22,9 +22,8 @@ def sort_by_interval_size (tuples_list):
     lower number in the interval
     """
 
-    # Add Your Code HERE ... AND REMOVE THIS Line
-
-    return None # Replace this.
+    interval_sorted_list = sorted(tuples_list, key = lambda x: abs(x[1] - x[0]))
+    return interval_sorted_list
 
 
 
