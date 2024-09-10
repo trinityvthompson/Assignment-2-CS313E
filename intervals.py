@@ -9,9 +9,17 @@ import sys
 def merge_tuples (tuples_list):
     """Merge the tuples"""
 
-    sorted_tuples = sorted(tuples_list)
-    return sorted_tuples
+    sorted_list = sorted(tuples_list, key = lambda x: x[0])
 
+    merged = []
+
+    for interval in sorted_list:
+        if interval not in merged or interval[0] > merged[-1][1]:
+            merged.append(interval)
+        else:
+            merged[-1] = (min(merged[-1][0], interval[0]), max(merged[-1][1], interval[1]))
+
+    return merged
 
 
 def sort_by_interval_size (tuples_list):
