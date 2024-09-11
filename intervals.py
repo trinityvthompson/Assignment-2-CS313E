@@ -9,14 +9,21 @@ import sys
 def merge_tuples (tuples_list):
     """Merge the tuples"""
 
+    # sort the list os tuples into a new list
     sorted_list = sorted(tuples_list, key = lambda x: x[0])
 
+    # create new list for merged intervals
     merged = []
 
+    # iterate through each interval in the sorted list
     for interval in sorted_list:
+        # If the merged list is empty or the current interval does not overlap with the last interval in merged,
+        # append the current interval to merged list
         if not merged or interval[0] > merged[-1][1]:
             merged.append(interval)
         else:
+            # If the current interval overlaps with the last interval in the merged list,
+            # merge them by updating the end of the last interval to the max end value
             merged[-1] = (merged[-1][0], max(merged[-1][1], interval[1]))
 
     return merged
@@ -30,6 +37,7 @@ def sort_by_interval_size (tuples_list):
     lower number in the interval
     """
 
+    # Sort the list of tuples by the size of the interval
     interval_sorted_list = sorted(tuples_list, key = lambda x: abs(x[1] - x[0]))
     return interval_sorted_list
 
