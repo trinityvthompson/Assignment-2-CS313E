@@ -14,10 +14,10 @@ def merge_tuples (tuples_list):
     merged = []
 
     for interval in sorted_list:
-        if interval not in merged or interval[0] > merged[-1][1]:
+        if not merged or interval[0] > merged[-1][1]:
             merged.append(interval)
         else:
-            merged[-1] = (min(merged[-1][0], interval[0]), max(merged[-1][1], interval[1]))
+            merged[-1] = (merged[-1][0], max(merged[-1][1], interval[1]))
 
     return merged
 
@@ -29,19 +29,9 @@ def sort_by_interval_size (tuples_list):
     size of the interval if two intervals have the size then it will sort by the
     lower number in the interval
     """
-    sorted_list = sorted(tuples_list, key = lambda x: x[0])
 
-    merged = []
-
-    for interval in sorted_list:
-        if interval not in merged or interval[0] > merged[-1][1]:
-            merged.append(interval)
-        else:
-            merged[-1] = (min(merged[-1][0], interval[0]), max(merged[-1][1], interval[1]))
-
-    return merged
-
-
+    interval_sorted_list = sorted(tuples_list, key = lambda x: abs(x[1] - x[0]))
+    return interval_sorted_list
 
 def main():
     """
