@@ -17,13 +17,9 @@ def merge_tuples (tuples_list):
 
     # iterate through each interval in the sorted list
     for interval in sorted_list:
-        # If the merged list is empty or the current interval does not overlap with the last interval in merged,
-        # append the current interval to merged list
         if not merged or interval[0] > merged[-1][1]:
             merged.append(interval)
         else:
-            # If the current interval overlaps with the last interval in the merged list,
-            # merge them by updating the end of the last interval to the max end value
             merged[-1] = (merged[-1][0], max(merged[-1][1], interval[1]))
 
     return merged
